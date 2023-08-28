@@ -1,16 +1,42 @@
-export class ProductModel {
-	image: string;
-	title: string;
-	price: number;
-	oldPrice: number;
-	credit: number;
-	calculatedRating: number;
-	description: string;
-	advantages: string;
-	disAdvantages: string;
-	categories: string[];
-	tags: string[];
-	characteristics: {
-		[key: string]: string;
-	};
+import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
+
+export type ProductDocument = HydratedDocument<ProductModel>;
+
+class ProductCharacteristic {
+	@Prop()
+	name: string;
+	@Prop()
+	value: string;
 }
+
+export class ProductModel {
+	@Prop()
+	_id: number;
+	@Prop()
+	image: string;
+	@Prop()
+	title: string;
+	@Prop()
+	price: number;
+	@Prop()
+	oldPrice: number;
+	@Prop()
+	credit: number;
+	@Prop()
+	calculatedRating: number;
+	@Prop()
+	description: string;
+	@Prop()
+	advantages: string;
+	@Prop()
+	disAdvantages: string;
+	@Prop([String])
+	categories: string[];
+	@Prop([String])
+	tags: string[];
+	@Prop({ type: [ProductCharacteristic], _id: false })
+	characteristics: ProductCharacteristic[];
+}
+
+export const ProductSchema = SchemaFactory.createForClass(ProductModel);
