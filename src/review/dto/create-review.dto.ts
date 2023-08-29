@@ -11,8 +11,6 @@ export class CreateReviewDto {
 	@Min(1)
 	@IsNumber()
 	rating: number;
-	@IsDate()
-	createdAt: Date;
 	@IsString()
 	productId: string;
 }

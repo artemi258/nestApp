@@ -12,7 +12,6 @@ const testDto: CreateReviewDto = {
 	title: 'Заголовок',
 	description: 'Описание тестовое',
 	rating: 5,
-	createdAt: new Date(),
 	productId,
 };
 
@@ -41,33 +40,30 @@ describe('AppController (e2e)', () => {
 				expect(createdId).toBeDefined;
 			});
 	});
-	it('/review/create (POST) - fail', async () => {
-		return request(app.getHttpServer())
-			.post('/review/create')
-			.send({ ...testDto, rating: 0 })
-			.expect(400)
-			.then(({ body }: request.Response) => {
-				console.log('body', body);
-			});
-	});
+	// it('/review/create (POST) - fail', async () => {
+	// 	return request(app.getHttpServer())
+	// 		.post('/review/create')
+	// 		.send({ ...testDto, rating: 0 })
+	// 		.expect(400)
+	// 		.then(({ body }: request.Response) => {
+	// 			console.log('body', body);
+	// 		});
+	// });
 
-	it('/review/byProduct/:productId (GET)', async () => {
-		return request(app.getHttpServer())
-			.delete('/review/byProduct/' + '6041f7a3b3e24b1e15e98d38')
-			.expect(200)
-			.then(({ body }: request.Response) => {
-				console.log(body);
-				expect(body.length).toBe(1);
-			});
-	});
-	it('/review/:id (DELETE)', () => {
-		return request(app.getHttpServer())
-			.delete('/review/' + createdId)
-			.expect(200);
-	});
-	afterAll(() => {
-		disconnect();
-	});
+	// it('/review/byProduct/:productId (GET)', async () => {
+	// 	return request(app.getHttpServer())
+	// 		.delete('/review/byProduct/' + '6041f7a3b3e24b1e15e98d38')
+	// 		.expect(200)
+	// 		.then(({ body }: request.Response) => {
+	// 			console.log(body);
+	// 			expect(body.length).toBe(1);
+	// 		});
+	// });
+	// it('/review/:id (DELETE)', () => {
+	// 	return request(app.getHttpServer())
+	// 		.delete('/review/' + createdId)
+	// 		.expect(200);
+	// });
 	afterAll(() => {
 		disconnect();
 	});

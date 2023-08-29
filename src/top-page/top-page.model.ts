@@ -1,4 +1,4 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
 export type TopPageModelDocument = HydratedDocument<TopPageModel>;
@@ -28,6 +28,7 @@ export class TopPageAdvantages {
 	description: string;
 }
 
+@Schema()
 export class TopPageModel {
 	@Prop()
 	_id: string;
