@@ -8,7 +8,6 @@ import { CreateReviewDto } from './dto/create-review.dto';
 export class ReviewService {
 	constructor(@InjectModel(ReviewModel.name) private readonly reviewModel: Model<ReviewDocument>) {}
 	async create(dto: CreateReviewDto): Promise<ReviewModel> {
-		console.log('dto', dto);
 		return this.reviewModel.create(dto);
 	}
 	async delete(id: string): Promise<ReviewModel | null> {

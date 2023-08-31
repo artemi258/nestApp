@@ -12,15 +12,13 @@ class ProductCharacteristic {
 @Schema()
 export class ProductModel {
 	@Prop()
-	_id: number;
-	@Prop()
 	image: string;
 	@Prop()
 	title: string;
 	@Prop()
 	price: number;
 	@Prop()
-	oldPrice: number;
+	oldPrice?: number;
 	@Prop()
 	credit: number;
 	@Prop()
