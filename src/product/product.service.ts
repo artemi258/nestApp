@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Body } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ProductDocument, ProductModel } from './product.model';
 import { Model } from 'mongoose';
@@ -52,6 +52,17 @@ export class ProductService {
 					$addFields: {
 						reviewCount: { $size: '$reviews' },
 						reviewAvg: { $avg: '$reviews.rating' },
+						reviews: {
+							$function: {
+								body: function (reviews: ReviewModel[]): ReviewModel[] {
+									return reviews.sort(
+										(a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf(),
+									);
+								},
+								args: ['$reviews'],
+								lang: 'js',
+							},
+						},
 					},
 				},
 			])

@@ -16,6 +16,7 @@ export class ReviewModel {
 	rating: number;
 	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: ProductModel.name })
 	productId: ProductModel;
+	createdAt: Date;
 }
 
 export const ReviewSchema = SchemaFactory.createForClass(ReviewModel);
