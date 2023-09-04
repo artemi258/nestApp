@@ -9,7 +9,7 @@ class ProductCharacteristic {
 	@Prop()
 	value: string;
 }
-@Schema()
+@Schema({ timestamps: true })
 export class ProductModel {
 	@Prop()
 	image: string;
